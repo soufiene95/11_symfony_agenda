@@ -1,0 +1,17 @@
+{% extends 'themes/base.html.twig' %}
+
+{% block title %}
+	Liste des contacts
+{% endblock %}
+
+{% block description %}
+	Consultez la liste de vos contacts.
+{% endblock %}
+
+{% block main %}
+	<h1 class="text-center my-3 display-5">Liste des contacts</h1>
+
+    <div class="d-flex justify-content-end alig-items-center">
+        <a href="{{path('app_create')}}" class="btn btn-primary">Nouveau contact</a>
+    </div>
+{% endblock %}
