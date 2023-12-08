@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ class ContactController extends AbstractController
     }
 
     #[Route('/contact/create', name: 'app_create', methods: ['GET','POST'])]
-    public function create(Request $request): Response
+    public function create(Request $request, EntityManagerInterface $em): Response
     {
         $contact = new Contact();
 
@@ -29,7 +30,16 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            dd('test');
+
+            $contact->setCreatedAt(new \DateTimeImmutable());
+            $contact->setUpdatedAt(new \DateTimeImmutable());
+            
+            $em->persist($contact);
+            $em->flush();
+
+            $this->addFlash('success','le contacte a été ajouté en base de données.');
+
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('pages/create.html.twig', [
