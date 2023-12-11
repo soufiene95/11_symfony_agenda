@@ -3,8 +3,8 @@ namespace App\Trait;
 
 trait TimeZoneTrait
 {
-    public function changeTimeZone(string $timeZone)
+    public function changeTimeZone(string $timeZone): void
     {
-        date_default_timezone_set($timeZone);
+        \date_default_timezone_set($timeZone);
     }
 }

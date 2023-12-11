@@ -1,0 +1,50 @@
+{% extends "themes/base.html.twig" %}
+
+{% block title %}
+    Modifier le contact {{contact.firstName}} {{contact.lastName}}
+{% endblock %}
+
+{% block description %}
+    Modifier e contact {{contact.firstName}} {{contact.lastName}}
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Modifier le contact {{contact.firstName}} {{contact.lastName}}</h1>
+
+    <div class="container my-5">
+		<div class="row">
+			<div class="col-md-6 mx-auto">
+				{{ form_start(form) }}
+				<div class="mb-3">
+					<label for="contact_form_firstName">Prénom</label>
+                    <div class="text-danger">{{ form_errors(form.firstName) }}</div>
+					{{ form_widget(form.firstName, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
+				</div>
+				<div class="mb-3">
+					<label for="contact_form_lastName">Nom</label>
+                    <div class="text-danger">{{ form_errors(form.lastName) }}</div>
+					{{ form_widget(form.lastName, {'attr': {'class':'form-control'}})}}
+				</div>
+				<div class="mb-3">
+					<label for="contact_form_email">Email</label>
+                    <div class="text-danger">{{ form_errors(form.email) }}</div>
+					{{ form_widget(form.email, {'attr': {'class':'form-control'}})}}
+				</div>
+				<div class="mb-3">
+					<label for="contact_form_phone">Numéro de téléphone</label>
+                    <div class="text-danger">{{ form_errors(form.phone) }}</div>
+					{{ form_widget(form.phone, {'attr': {'class':'form-control'}})}}
+				</div>
+				<div class="mb-3">
+					<label for="contact_form_comment">Laisser un commentaire</label>
+                    <div class="text-danger">{{ form_errors(form.comment) }}</div>
+					{{ form_widget(form.comment, {'attr': {'class':'form-control', 'rows': 6}})}}
+				</div>
+				<div>
+					<input formnovalidate type="submit" class="btn btn-primary shdadow" value="Modifier">
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
